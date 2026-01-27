@@ -1,0 +1,2080 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIMO SPICY EMPIRE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #FF6B35 0%, #FFA500 100%);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav {
+            background-color: #5C3D2E;
+            color: #FFD700;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 36px;
+            font-weight: bold;
+            font-family: Georgia, 'Times New Roman', serif;
+            letter-spacing: 2px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            text-shadow: 
+                0 0 10px rgba(255, 215, 0, 0.8),
+                0 0 20px rgba(255, 107, 53, 0.6),
+                0 0 30px rgba(255, 107, 53, 0.4),
+                2px 2px 4px rgba(0, 0, 0, 0.5);
+            width: 100vw;
+            left: 0;
+            right: 0;
+            margin: 0;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+
+        /* Menu Tabs */
+        .menu-tabs {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 15px;
+            position: sticky;
+            top: 80px;
+            z-index: 99;
+            border-bottom: 2px solid #f0f0f0;
+            align-items: center;
+        }
+
+        .tab {
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            min-height: 20px;
+        }
+
+        .tab:hover {
+            color: #FF6B35;
+        }
+
+        .tab.active {
+            color: #FF6B35;
+            border-bottom-color: #FF6B35;
+        }
+
+        .tab-underline {
+            position: absolute;
+            bottom: 0;
+            height: 3px;
+            background: #FF6B35;
+            width: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        nav span {
+
+            background: none;
+            color: #FFD700;
+            padding: 0;
+            border-radius: 0;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .cart-icon {
+            background: #FF6B35;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s;
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            z-index: 999;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .cart-icon:hover {
+            background: #FF5722;
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        #cart-count {
+            background: #FFD700;
+            color: #4A3728;
+            padding: 2px 8px;
+            border-radius: 50%;
+            margin-left: 5px;
+            font-weight: bold;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+
+        .logo-box {
+            width: 150px;
+            height: 150px;
+            border: 3px dashed white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 18px;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.15);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .fire-emoji {
+            display: inline-block;
+            animation: float 2s infinite, pulse 1.5s infinite;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .tagline {
+            font-size: 18px;
+            font-style: italic;
+            opacity: 0.95;
+        }
+
+        /* Ordering Options Section */
+        .ordering-options {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+
+        .ordering-options h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .options-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 30px 20px;
+        }
+
+        .option-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            width: 200px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .option-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+        }
+
+        .option-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .option-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #4A3728;
+            margin-bottom: 10px;
+        }
+
+        .option-desc {
+            font-size: 14px;
+            color: #FF6B35;
+        }
+
+        /* Social Media Section */
+        .social-media-section {
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
+
+        .social-media-section h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            padding: 15px 25px;
+            background: white;
+            border-radius: 12px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        .social-icon {
+            font-size: 40px;
+        }
+
+        .social-name {
+            color: #4A3728;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .social-link.ig {
+            border-left: 4px solid #E1306C;
+        }
+
+        .social-link.tiktok {
+            border-left: 4px solid #000000;
+        }
+
+        .social-link.whatsapp {
+            border-left: 4px solid #25D366;
+        }
+
+        /* Admin Panel CSS */
+        .admin-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4A3728;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .admin-toggle:hover {
+            background: #5C3D2E;
+            transform: scale(1.1);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            color: #4A3728;
+            margin-bottom: 20px;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .modal-content button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .modal-content button:hover {
+            background: #FF5722;
+        }
+
+        .modal-content .btn-close {
+            background: #ccc;
+            color: #333;
+        }
+
+        .modal-content .btn-close:hover {
+            background: #bbb;
+        }
+
+        .admin-dashboard {
+            background: linear-gradient(135deg, #FF6B35 0%, #FFA500 100%);
+            min-height: 100vh;
+            padding: 20px;
+            z-index: 999;
+        }
+
+        .admin-header {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .admin-header h1 {
+            color: #4A3728;
+            margin: 0;
+        }
+
+        .logout-btn {
+            background: #FF6B35;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background: #FF5722;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .admin-tab-btn {
+            background: white;
+            color: #4A3728;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .admin-tab-btn.active {
+            background: #FF6B35;
+            color: white;
+        }
+
+        .admin-tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .admin-tab-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        .admin-tab-content.active {
+            display: block;
+        }
+
+        .admin-tab-content h3 {
+            color: #4A3728;
+            margin-top: 0;
+        }
+
+        .product-list, .promo-list, .orders-list {
+            margin-bottom: 20px;
+        }
+
+        .product-item, .promo-item, .order-item {
+            background: #f5f5f5;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #FF6B35;
+        }
+
+        .product-item input, .promo-item input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        .product-item button, .promo-item button {
+            background: #FF6B35;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .product-item button:hover, .promo-item button:hover {
+            background: #FF5722;
+        }
+
+        .btn-add {
+            background: #4A3728;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-add:hover {
+            background: #5C3D2E;
+        }
+
+        .social-edit input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .social-edit button {
+            background: #FF6B35;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .social-edit button:hover {
+            background: #FF5722;
+        }
+
+        .products {
+
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: nowrap;
+            margin: 40px 20px;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            width: 280px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #4A3728;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #FF6B35;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .quantity-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+
+        .quantity-container button {
+            background: #FF6B35;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .quantity-container button:hover {
+            background: #FF5722;
+        }
+
+        .quantity-container input {
+            width: 60px;
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .card button {
+            background: #FF6B35;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .card button:hover {
+            background: #FF5722;
+        }
+
+        .cart-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 40px auto;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            display: none;
+            animation: slideIn 0.3s;
+        }
+
+        .cart-box.show {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cart-box h3 {
+            color: #4A3728;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        .cart-box h3:first-child {
+            margin-top: 0;
+        }
+
+        .cart-box input,
+        .cart-box select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        #cart-items {
+            list-style: none;
+            margin-bottom: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        #cart-items li {
+            background: #f5f5f5;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #cart-items button {
+            background: #FF6B35;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        #cart-items button:hover {
+            background: #FF5722;
+        }
+
+        .cart-box p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4A3728;
+            margin-bottom: 20px;
+        }
+
+        .pay-btn {
+            background: #FF6B35;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .pay-btn:hover {
+            background: #FF5722;
+        }
+
+        footer {
+            background-color: #5C3D2E;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 0;
+            width: 100%;
+            left: 0;
+            right: 0;
+        }
+
+        /* Promotions Section */
+        .promo-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            width: 500px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .promo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+        }
+
+        .promo-badge {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: #FF6B35;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .promo-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .promo-card h3 {
+            color: #4A3728;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .original-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .promo-price {
+            color: #FF6B35;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .promo-desc {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Rewards Section */
+        .rewards-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 40px 20px;
+            padding: 0 20px;
+        }
+
+        .reward-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .reward-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+        }
+
+        .reward-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .reward-card h3 {
+            color: #4A3728;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            display: block;
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .menu-section h2 {
+            color: white;
+            margin: 0 0 30px 0;
+            text-align: center;
+        }
+
+        #menu-products {
+            display: flex !important;
+            flex-wrap: nowrap;
+            gap: 30px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .reward-card p {
+            color: #FF6B35;
+            font-size: 14px;
+        }
+
+        /* Admin Section */
+        .admin-section {
+            background: linear-gradient(135deg, #FF6B35 0%, #FFA500 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .admin-login-prompt {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 50px auto;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .admin-login-prompt h2 {
+            color: #4A3728;
+            margin-bottom: 10px;
+        }
+
+        .admin-login-prompt p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .admin-login-prompt input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .admin-login-prompt button {
+            width: 100%;
+            padding: 12px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .admin-login-prompt button:hover {
+            background: #FF5722;
+        }
+
+        /* Image Modal Styles */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .image-modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .image-modal-close:hover {
+            color: #FF6B35;
+        }
+
+        /* Customer Slideshow Styles */
+        .slideshow-container {
+            max-width: 500px;
+            position: relative;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .slideshow-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%;
+        }
+
+        .slide {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            background-color: rgba(0,0,0,0.5);
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 3px;
+            user-select: none;
+            z-index: 10;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .dots {
+            text-align: center;
+            padding: 15px;
+            background: white;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .dot.active {
+            background-color: #FF6B35;
+        }
+
+        .slideshow-title {
+            text-align: center;
+            color: #FF6B35;
+            font-weight: bold;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    NIMO SPICY EMPIRE <span class="fire-emoji">🔥</span>
+</nav>
+
+<!-- Navigation Menu Tabs -->
+<div class="menu-tabs">
+    <div class="tab active" onclick="switchTab('home')">Home</div>
+    <div class="tab" onclick="switchTab('promotions')">Kombo</div>
+    <div class="tab" onclick="switchTab('menu')">Menu</div>
+    <div class="tab" onclick="switchTab('admin')">🔐 Admin</div>
+</div>
+
+<div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+
+<section class="hero">
+    <div class="logo-box">
+        <img src="logo nimo.jpg" alt="NIMO SPICY EMPIRE" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+    </div>
+    <h1>NIMO SPICY EMPIRE</h1>
+    <div class="tagline">Delicious For Everyone</div>
+</section>
+
+<!-- Ordering Options Section -->
+<section class="ordering-options" id="home-section">
+    <!-- Organizational Chart Section -->
+    <div class="org-chart-section" style="text-align: center; padding: 20px;">
+        <h3 style="color: white; margin-bottom: 15px; font-size: 18px;">Struktur Organisasi Nimo Spicy</h3>
+        <img src="carta organisasi nimo spicy.jpg" alt="Carta Organisasi Nimo Spicy" style="max-width: 550px; width: 95%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" onerror="this.src='https://via.placeholder.com/400x300?text=Carta+Organisasi'">
+    </div>
+
+    <!-- Customer Slideshow Section -->
+    <div style="padding: 40px 20px;">
+        <h3 class="slideshow-title" style="color: white;">📸 Pelanggan Spicy Nimo 📸</h3>
+        <div class="slideshow-container">
+            <div class="slideshow-wrapper">
+                <div class="slide active"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 1.jpg" alt="Pelanggan 1"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 2.jpg" alt="Pelanggan 2"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 3.jpg" alt="Pelanggan 3"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 4.jpg" alt="Pelanggan 4"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 5.jpg" alt="Pelanggan 5"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 6.jpg" alt="Pelanggan 6"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 7.jpg" alt="Pelanggan 7"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 8.jpg" alt="Pelanggan 8"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 9.jpg" alt="Pelanggan 9"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 10.jpg" alt="Pelanggan 10"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 11.jpg" alt="Pelanggan 11"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 12.jpg" alt="Pelanggan 12"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 13.jpg" alt="Pelanggan 13"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 14.jpg" alt="Pelanggan 14"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 15.jpg" alt="Pelanggan 15"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 16.jpg" alt="Pelanggan 16"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 17.jpg" alt="Pelanggan 17"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 18.jpg" alt="Pelanggan 18"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 19.jpg" alt="Pelanggan 19"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 20.jpg" alt="Pelanggan 20"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 21.jpg" alt="Pelanggan 21"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 22.jpg" alt="Pelanggan 22"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 23.jpg" alt="Pelanggan 23"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 24.jpg" alt="Pelanggan 24"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 25.jpg" alt="Pelanggan 25"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 26.jpg" alt="Pelanggan 26"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 27.jpg" alt="Pelanggan 27"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 28.jpg" alt="Pelanggan 28"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 29.jpg" alt="Pelanggan 29"></div>
+                <div class="slide"><img src="Gambar Pelanggan Spicy Nimo/pelanggan 30.jpg" alt="Pelanggan 30"></div>
+                <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                <a class="next" onclick="changeSlide(1)">&#10095;</a>
+            </div>
+            <div class="dots" id="dotsContainer"></div>
+        </div>
+    </div>
+
+    <!-- Social Media Section -->
+    <div class="social-media-section">
+        <h3>Ikuti Kami di :</h3>
+        <div class="social-links">
+            <a href="https://instagram.com" target="_blank" class="social-link ig">
+                <span class="social-icon"><i class="fab fa-instagram"></i></span>
+                <span class="social-name">Instagram</span>
+            </a>
+            <a href="https://tiktok.com" target="_blank" class="social-link tiktok">
+                <span class="social-icon"><i class="fab fa-tiktok"></i></span>
+                <span class="social-name">TikTok</span>
+            </a>
+            <a href="https://wa.me/60187793576" target="_blank" class="social-link whatsapp">
+                <span class="social-icon"><i class="fab fa-whatsapp"></i></span>
+                <span class="social-name">WhatsApp</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Promotions Section -->
+<section class="promo-section" id="promotions-section" style="display:none;">
+    <h2 style="text-align:center; color:white; margin: 40px 0;">🎉 Kombo Istimewa Spicy Nimo 🎉</h2>
+    <div class="products">
+        <div class="promo-card">
+            <div class="promo-badge">KOMBO ISTIMEWA</div>
+            <img src="gambar combo nimo spicy.jpg" alt="Combo Nimo Spicy" style="width: 100%; height: 350px; object-fit: cover; cursor: pointer;" onclick="openImageModal(this.src)" onerror="this.src='https://via.placeholder.com/250x200?text=Combo+Nimo+Spicy'">
+            <h3>Combo Nimo Spicy</h3>
+            <p style="color: #FF6B35; font-weight: bold;">Buat Pilihan Anda</p>
+            <select id="combo-type" style="width: 100%; padding: 8px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px;">
+                <option>--- Pilih Combo ---</option>
+                <option value="A">Combo A - RM10.00</option>
+                <option value="B">Combo B - RM14.00</option>
+            </select>
+            <select id="combo-payment" style="width: 100%; padding: 8px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px;">
+                <option>--- Pilih Kaedah Bayaran ---</option>
+                <option>Tunai</option>
+                <option>QR</option>
+            </select>
+            <button onclick="addComboToCart()" style="background-color: #FF6B35; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold;">Add to Cart</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- Menu Section -->
+<section class="menu-section" id="menu-section" style="display:none;">
+    <h2 style="text-align:center; color:white; margin: 40px 0 20px 0;">Senarai Produk Kami</h2>
+
+    <div class="products" style="display:flex;">
+        <div class="card">
+            <img src="hanabero & korean chicken popcorn.jpg" alt="Ayam Popcorn" onerror="this.src='https://via.placeholder.com/250x200?text=Ayam+Popcorn'">
+            <h3>Ayam Pop Corn</h3>
+            <p>RM8.00</p>
+            <select id="flavour">
+                <option>Honey Habanero</option>
+                <option>Korean BBQ</option>
+            </select>
+            <select id="popcorn-payment" style="width: 100%; padding: 8px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                <option>--- Kaedah Bayaran ---</option>
+                <option>Tunai</option>
+                <option>QR</option>
+            </select>
+            <div class="quantity-container">
+                <button onclick="changeQty('popcorn', -1)">−</button>
+                <input type="number" id="qty-popcorn" value="1" min="1">
+                <button onclick="changeQty('popcorn', 1)">+</button>
+            </div>
+            <button onclick="addPopcorn()">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="sambal nimo.jpg" alt="Sambal Rindu" onerror="this.src='https://via.placeholder.com/250x200?text=Sambal+Rindu'">
+            <h3>Sambal Rindu</h3>
+            <p>RM5.00</p>
+            <select id="sambal">
+                <option>Sambal Paru Berlado</option>
+                <option>Sambal Ikan Bilis Hijau</option>
+                <option>Sambal Petai</option>
+            </select>
+            <select id="sambal-payment" style="width: 100%; padding: 8px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                <option>--- Kaedah Bayaran ---</option>
+                <option>Tunai</option>
+                <option>QR</option>
+            </select>
+            <div class="quantity-container">
+                <button onclick="changeQty('sambal', -1)">−</button>
+                <input type="number" id="qty-sambal" value="1" min="1">
+                <button onclick="changeQty('sambal', 1)">+</button>
+            </div>
+            <button onclick="addSambal()">Add to Cart</button>
+        </div>
+    </div>
+
+</section>
+
+<!-- Rewards Section -->
+<section class="rewards-section" id="rewards-section" style="display:none;">
+    <h2 style="text-align:center; color:white; margin: 40px 0;">⭐ Program Loyalti ⭐</h2>
+    <div class="rewards-container">
+        <div class="reward-card">
+            <div class="reward-icon">🎁</div>
+            <h3>Beli 10 Kali</h3>
+            <p>Dapat Diskaun 10%</p>
+        </div>
+        <div class="reward-card">
+            <div class="reward-icon">🏆</div>
+            <h3>Member Premium</h3>
+            <p>Diskaun Eksklusif Setiap Hari</p>
+        </div>
+        <div class="reward-card">
+            <div class="reward-icon">🎉</div>
+            <h3>Ulang Tahun Istimewa</h3>
+            <p>Percuma 1 Ayam Pop Corn</p>
+        </div>
+        <div class="reward-card">
+            <div class="reward-icon">⚡</div>
+            <h3>Point Rewards</h3>
+            <p>Setiap Pembelian Dapat Point</p>
+        </div>
+    </div>
+</section>
+
+<!-- Admin Section -->
+<section class="admin-section" id="admin-section" style="display:none;">
+    <div class="admin-login-prompt">
+        <h2>Admin Access</h2>
+        <p>Masukkan password untuk mengakses admin panel</p>
+        <input type="password" id="tabAdminPassword" placeholder="Password" onkeypress="if(event.key==='Enter') tabAdminLogin()">
+        <button onclick="tabAdminLogin()">Login</button>
+    </div>
+    
+    <div id="tabAdminPanel" style="display:none;">
+        <div class="admin-header">
+            <h1>Admin Panel - NIMO SPICY EMPIRE</h1>
+            <button onclick="tabLogoutAdmin()" class="logout-btn">Logout</button>
+        </div>
+
+        <div class="admin-tabs">
+            <button class="admin-tab-btn active" onclick="switchAdminTab('products')">Manage Products</button>
+            <button class="admin-tab-btn" onclick="switchAdminTab('promotions')">Manage Promotions</button>
+            <button class="admin-tab-btn" onclick="switchAdminTab('orders')">View Orders</button>
+            <button class="admin-tab-btn" onclick="switchAdminTab('social')">Social Media</button>
+        </div>
+
+        <!-- Products Tab -->
+        <div id="products-tab" class="admin-tab-content active">
+            <h3>Manage Products</h3>
+            <div class="product-list" id="productList"></div>
+            <button onclick="addNewProduct()" class="btn-add">+ Add Product</button>
+        </div>
+
+        <!-- Promotions Tab -->
+        <div id="promotions-tab" class="admin-tab-content" style="display:none;">
+            <h3>Manage Promotions</h3>
+            <div class="promo-list" id="promoList"></div>
+            <button onclick="addNewPromo()" class="btn-add">+ Add Promotion</button>
+        </div>
+
+        <!-- Orders Tab -->
+        <div id="orders-tab" class="admin-tab-content" style="display:none;">
+            <h3>View Orders</h3>
+            <div class="orders-list" id="ordersList"></div>
+        </div>
+
+        <!-- Social Media Tab -->
+        <div id="social-tab" class="admin-tab-content" style="display:none;">
+            <h3>Social Media Links</h3>
+            <div class="social-edit">
+                <label>Instagram Link:</label>
+                <input type="text" id="igLink" placeholder="https://instagram.com/...">
+                <label>TikTok Link:</label>
+                <input type="text" id="ttLink" placeholder="https://tiktok.com/@...">
+                <label>WhatsApp Number:</label>
+                <input type="text" id="waLink" placeholder="60187793576">
+                <button onclick="saveSocialLinks()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="products" id="menu-products" style="display:none;">
+
+</section>
+
+<div class="cart-box" id="cartBox">
+    <h3>Maklumat Pelanggan</h3>
+    <input type="text" id="custName" placeholder="Nama Penuh">
+    <input type="text" id="custPhone" placeholder="No Telefon">
+
+    <select id="custAddress">
+        <option value="">Pilih Lokasi</option>
+        <option>KV Perdagangan</option>
+    </select>
+
+    <select id="paymentMethod">
+        <option value="">Kaedah Pembayaran</option>
+        <option>Tunai</option>
+        <option>QR</option>
+    </select>
+
+    <h3>🧺 Troli</h3>
+    <ul id="cart-items"></ul>
+    <p>Total: RM <span id="total">0.00</span></p>
+    <div class="pay-btn" onclick="checkout()">Hantar Pesanan ke WhatsApp</div>
+</div>
+
+<footer>
+    © 2026 NIMO SPICY EMPIRE. All Rights Reserved.<br>
+    Instagram | TikTok | Facebook | Telegram
+</footer>
+
+<!-- Admin Login Modal -->
+<div id="adminLoginModal" class="modal">
+    <div class="modal-content">
+        <h2>Admin Login</h2>
+        <input type="password" id="adminPassword" placeholder="Password" onkeypress="if(event.key==='Enter') adminLogin()">
+        <button onclick="adminLogin()">Login</button>
+        <button onclick="closeAdminLogin()" class="btn-close">Close</button>
+    </div>
+</div>
+
+<!-- Admin Dashboard -->
+<div id="adminDashboard" class="admin-dashboard" style="display:none;">
+    <div class="admin-header">
+        <h1>Admin Panel - NIMO SPICY EMPIRE</h1>
+        <button onclick="logoutAdmin()" class="logout-btn">Logout</button>
+    </div>
+
+    <div class="admin-tabs">
+        <button class="admin-tab-btn active" onclick="switchAdminTab('products')">Manage Products</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('promotions')">Manage Promotions</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('orders')">View Orders</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('social')">Social Media</button>
+    </div>
+
+    <!-- Products Tab -->
+    <div id="products-tab" class="admin-tab-content">
+        <h3>Manage Products</h3>
+        <div class="product-list" id="productList"></div>
+        <button onclick="addNewProduct()" class="btn-add">+ Add Product</button>
+    </div>
+
+    <!-- Promotions Tab -->
+    <div id="promotions-tab" class="admin-tab-content" style="display:none;">
+        <h3>Manage Promotions</h3>
+        <div class="promo-list" id="promoList"></div>
+        <button onclick="addNewPromo()" class="btn-add">+ Add Promotion</button>
+        <div style="margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+            <h4>Tambah Diskaun Baru</h4>
+            <input type="text" id="newPromoTitle" placeholder="Nama Promosi" style="width: 100%; padding: 8px; margin: 5px 0;">
+            <input type="text" id="newPromoDesc" placeholder="Deskripsi Promosi" style="width: 100%; padding: 8px; margin: 5px 0;">
+            <input type="number" id="newPromoDiscount" placeholder="Diskaun %" min="0" max="100" style="width: 100%; padding: 8px; margin: 5px 0;">
+            <button onclick="createNewPromo()" style="width: 100%; padding: 10px; background-color: #FF6B35; color: white; border: none; border-radius: 4px; cursor: pointer;">Simpan Promosi Baru</button>
+        </div>
+    </div>
+
+    <!-- Orders Tab -->
+    <div id="orders-tab" class="admin-tab-content" style="display:none;">
+        <h3>View Orders</h3>
+        <div style="margin-bottom: 15px;">
+            <button onclick="exportOrders()" style="padding: 8px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Export Orders</button>
+            <button onclick="clearAllOrders()" style="padding: 8px 15px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 10px;">Clear All Orders</button>
+        </div>
+        <div class="orders-list" id="ordersList"></div>
+    </div>
+
+    <!-- Social Media Tab -->
+    <div id="social-tab" class="admin-tab-content" style="display:none;">
+        <h3>Social Media Links</h3>
+        <div class="social-edit">
+            <label>Instagram Link:</label>
+            <input type="text" id="igLink" placeholder="https://instagram.com/...">
+            <label>TikTok Link:</label>
+            <input type="text" id="ttLink" placeholder="https://tiktok.com/@...">
+            <label>WhatsApp Number:</label>
+            <input type="text" id="waLink" placeholder="60187793576">
+            <label>Facebook Link:</label>
+            <input type="text" id="fbLink" placeholder="https://facebook.com/...">
+            <label>Telegram Link:</label>
+            <input type="text" id="tgLink" placeholder="https://t.me/...">
+            <button onclick="saveSocialLinks()">Save Changes</button>
+            <hr style="margin: 20px 0;">
+            <h4>Tambah Platform Sosial Media Baru</h4>
+            <input type="text" id="newSocialPlatform" placeholder="Nama Platform (contoh: YouTube, Twitter)" style="width: 100%; padding: 8px; margin: 5px 0;">
+            <input type="text" id="newSocialLink" placeholder="Link Platform" style="width: 100%; padding: 8px; margin: 5px 0;">
+            <button onclick="addNewSocialMedia()" style="width: 100%; padding: 10px; background-color: #FF6B35; color: white; border: none; border-radius: 4px; cursor: pointer;">Tambah Platform</button>
+            <div id="customSocialLinks" style="margin-top: 15px;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Admin Toggle Button -->
+<button id="adminToggle" class="admin-toggle" onclick="toggleAdminLogin()" style="display:none;">🔐 Admin</button>
+
+<script>
+let cart = [];
+let total = 0;
+let orderType = "delivery"; // Default order type
+let adminPassword = "admin123"; // Simple password
+let isAdmin = false;
+
+// Show admin toggle after page load
+window.addEventListener('load', function() {
+    document.getElementById('adminToggle').style.display = 'block';
+    loadAdminData();
+});
+
+function toggleAdminLogin() {
+    document.getElementById('adminLoginModal').classList.add('show');
+}
+
+function closeAdminLogin() {
+    document.getElementById('adminLoginModal').classList.remove('show');
+}
+
+function adminLogin() {
+    let password = document.getElementById('adminPassword').value;
+    if(password === adminPassword) {
+        isAdmin = true;
+        document.getElementById('adminLoginModal').classList.remove('show');
+        document.getElementById('adminDashboard').style.display = 'block';
+        document.body.style.overflow = 'auto';
+        loadAdminData();
+    } else {
+        alert('Password Salah!');
+    }
+    document.getElementById('adminPassword').value = '';
+}
+
+function logoutAdmin() {
+    isAdmin = false;
+    document.getElementById('adminDashboard').style.display = 'none';
+    document.getElementById('adminLoginModal').classList.remove('show');
+}
+
+function switchAdminTab(tabName) {
+    // Hide all tabs
+    document.querySelectorAll('.admin-tab-content').forEach(tab => {
+        tab.style.display = 'none';
+        tab.classList.remove('active');
+    });
+    
+    // Remove active class from all buttons
+    document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Show selected tab and mark button as active
+    let selectedTab = document.getElementById(tabName + '-tab');
+    if(selectedTab) {
+        selectedTab.style.display = 'block';
+        selectedTab.classList.add('active');
+    }
+    event.target.classList.add('active');
+}
+
+function loadAdminData() {
+    loadProductsTab();
+    loadPromosTab();
+    loadOrdersTab();
+    loadSocialTab();
+}
+
+function loadProductsTab() {
+    let products = [
+        {id: 1, name: 'Ayam Pop Corn', price: 8.00, flavors: 'Honey Habanero, Korean BBQ, Spicy Sambal'},
+        {id: 2, name: 'Sambal Rindu', price: 5.00, flavors: 'Sambal Paru Berlado, Sambal Ikan Bilis Hijau, Sambal Petai'}
+    ];
+    
+    let html = '';
+    products.forEach(p => {
+        html += `<div class="product-item">
+            <strong>${p.name}</strong> - RM${p.price.toFixed(2)}<br>
+            <small>Pilihan: ${p.flavors}</small><br><br>
+            <input type="text" placeholder="Product Name" value="${p.name}">
+            <input type="number" placeholder="Price" value="${p.price}">
+            <button onclick="editProduct(${p.id})">Edit</button>
+            <button onclick="deleteProduct(${p.id})">Delete</button>
+        </div>`;
+    });
+    
+    document.getElementById('productList').innerHTML = html;
+}
+
+function addNewProduct() {
+    alert('Tambah produk baru (feature akan datang)');
+}
+
+function editProduct(id) {
+    alert('Edit produk (feature akan datang)');
+}
+
+function deleteProduct(id) {
+    alert('Delete produk (feature akan datang)');
+}
+
+function loadPromosTab() {
+    let promosData = localStorage.getItem('nimoPromos');
+    let promos = promosData ? JSON.parse(promosData) : [
+        {id: 1, title: 'Combo Special', discount: 20, desc: 'Popcorn + Sambal + Minuman'},
+        {id: 2, title: 'Sambal Bundle', discount: 15, desc: 'Beli 2 Sambal, Ambil Diskaun 15%'}
+    ];
+    
+    let html = '';
+    promos.forEach(p => {
+        html += `<div class="promo-item" style="background: #f9f9f9; padding: 15px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px;">
+            <strong style="font-size: 16px; color: #FF6B35;">${p.title}</strong><br>
+            <small style="color: #666;">${p.desc}</small><br>
+            <div style="margin-top: 10px; padding: 10px; background: #fff; border-radius: 3px;">
+                <strong>Diskaun: ${p.discount}%</strong>
+            </div>
+            <button onclick="deletePromo(${p.id})" style="margin-top: 10px; padding: 6px 12px; background-color: #f44336; color: white; border: none; border-radius: 3px; cursor: pointer;">Padam</button>
+        </div>`;
+    });
+    
+    document.getElementById('promoList').innerHTML = html || '<p>Tiada promosi sedia ada</p>';
+}
+
+function addNewPromo() {
+    alert('Sila gunakan borang "Tambah Diskaun Baru" di bawah untuk menambah promosi');
+}
+
+function createNewPromo() {
+    let title = document.getElementById('newPromoTitle').value;
+    let desc = document.getElementById('newPromoDesc').value;
+    let discount = document.getElementById('newPromoDiscount').value;
+    
+    if(!title || !desc || !discount) {
+        alert('Sila isi semua medan');
+        return;
+    }
+    
+    let promosData = localStorage.getItem('nimoPromos');
+    let promos = promosData ? JSON.parse(promosData) : [];
+    
+    let newPromo = {
+        id: Date.now(),
+        title: title,
+        desc: desc,
+        discount: parseInt(discount)
+    };
+    
+    promos.push(newPromo);
+    localStorage.setItem('nimoPromos', JSON.stringify(promos));
+    
+    document.getElementById('newPromoTitle').value = '';
+    document.getElementById('newPromoDesc').value = '';
+    document.getElementById('newPromoDiscount').value = '';
+    
+    alert('Promosi baru ditambah!');
+    loadPromosTab();
+}
+
+function editPromo(id) {
+    alert('Edit promo (feature akan datang)');
+}
+
+function deletePromo(id) {
+    if(confirm('Padam promosi ini?')) {
+        let promosData = localStorage.getItem('nimoPromos');
+        let promos = promosData ? JSON.parse(promosData) : [];
+        promos = promos.filter(p => p.id !== id);
+        localStorage.setItem('nimoPromos', JSON.stringify(promos));
+        loadPromosTab();
+    }
+}
+
+function loadOrdersTab() {
+    let ordersData = localStorage.getItem('nimoOrders');
+    let orders = ordersData ? JSON.parse(ordersData) : [];
+    
+    let html = `<div style="background: #f0f0f0; padding: 10px; margin-bottom: 15px; border-radius: 5px;">
+        <strong style="font-size: 16px; color: #FF6B35;">Jumlah Pesanan: ${orders.length}</strong>
+    </div>`;
+    
+    if(orders.length === 0) {
+        html += '<p style="color: #999; text-align: center;">Tiada pesanan lagi</p>';
+    } else {
+        orders.forEach((order, index) => {
+            html += `<div class="order-item" style="background: white; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <strong style="font-size: 16px; color: #FF6B35;">Pesanan #${index + 1}</strong>
+                    <small style="color: #999; background: #f0f0f0; padding: 5px 10px; border-radius: 3px;">${order.date}</small>
+                </div>
+                <hr style="margin: 10px 0; border: none; border-top: 1px solid #eee;">
+                <div style="margin: 8px 0;"><strong>👤 Pelanggan:</strong> ${order.name}</div>
+                <div style="margin: 8px 0;"><strong>📞 Telefon:</strong> ${order.phone}</div>
+                <div style="margin: 8px 0;"><strong>📍 Alamat:</strong> ${order.address}</div>
+                <div style="margin: 12px 0; padding: 10px; background: #f9f9f9; border-radius: 3px;">
+                    <strong>🛒 Pesanan Item:</strong>
+                    <div style="margin-top: 8px;">${order.items}</div>
+                </div>
+                <div style="margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 3px;">
+                    <strong style="font-size: 14px; color: #FF6B35;">💰 Jumlah: RM${order.total.toFixed(2)}</strong>
+                </div>
+            </div>`;
+        });
+    }
+    
+    document.getElementById('ordersList').innerHTML = html;
+}
+
+function exportOrders() {
+    let ordersData = localStorage.getItem('nimoOrders');
+    let orders = ordersData ? JSON.parse(ordersData) : [];
+    
+    if(orders.length === 0) {
+        alert('Tiada pesanan untuk di-export');
+        return;
+    }
+    
+    let csv = 'Pesanan #,Nama,Telefon,Alamat,Item,Jumlah,Tarikh\n';
+    orders.forEach((order, index) => {
+        csv += `${index + 1},"${order.name}",${order.phone},"${order.address}","${order.items}",${order.total.toFixed(2)},"${order.date}"\n`;
+    });
+    
+    let blob = new Blob([csv], { type: 'text/csv' });
+    let url = window.URL.createObjectURL(blob);
+    let a = document.createElement('a');
+    a.href = url;
+    a.download = 'nimo-orders-' + new Date().toISOString().slice(0, 10) + '.csv';
+    a.click();
+}
+
+function clearAllOrders() {
+    if(confirm('Anda pasti nak padam SEMUA pesanan? Tindakan ini tidak dapat dibuat alik!')) {
+        localStorage.removeItem('nimoOrders');
+        alert('Semua pesanan telah dipadamkan');
+        loadOrdersTab();
+    }
+}
+
+function loadSocialTab() {
+    let socialData = localStorage.getItem('nimoSocial');
+    let social = socialData ? JSON.parse(socialData) : {ig: '', tt: '', wa: '60187793576', fb: '', tg: '', custom: []};
+    
+    document.getElementById('igLink').value = social.ig || 'https://instagram.com';
+    document.getElementById('ttLink').value = social.tt || 'https://tiktok.com';
+    document.getElementById('waLink').value = social.wa || '60187793576';
+    document.getElementById('fbLink').value = social.fb || 'https://facebook.com';
+    document.getElementById('tgLink').value = social.tg || 'https://t.me/';
+    
+    loadCustomSocialLinks();
+}
+
+function loadCustomSocialLinks() {
+    let socialData = localStorage.getItem('nimoSocial');
+    let social = socialData ? JSON.parse(socialData) : {custom: []};
+    let customLinks = social.custom || [];
+    
+    let html = '';
+    customLinks.forEach((link, index) => {
+        html += `<div style="background: #f9f9f9; padding: 10px; margin: 8px 0; border-radius: 3px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <strong>${link.platform}</strong><br>
+                <small style="color: #666;">${link.url}</small>
+            </div>
+            <button onclick="deleteCustomSocial(${index})" style="padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 3px; cursor: pointer;">Padam</button>
+        </div>`;
+    });
+    
+    document.getElementById('customSocialLinks').innerHTML = html || '';
+}
+
+function addNewSocialMedia() {
+    let platform = document.getElementById('newSocialPlatform').value;
+    let link = document.getElementById('newSocialLink').value;
+    
+    if(!platform || !link) {
+        alert('Sila isi nama platform dan link');
+        return;
+    }
+    
+    let socialData = localStorage.getItem('nimoSocial');
+    let social = socialData ? JSON.parse(socialData) : {custom: []};
+    
+    if(!social.custom) social.custom = [];
+    
+    social.custom.push({
+        platform: platform,
+        url: link
+    });
+    
+    localStorage.setItem('nimoSocial', JSON.stringify(social));
+    
+    document.getElementById('newSocialPlatform').value = '';
+    document.getElementById('newSocialLink').value = '';
+    
+    alert('Platform baru ditambah!');
+    loadCustomSocialLinks();
+}
+
+function deleteCustomSocial(index) {
+    if(confirm('Padam platform ini?')) {
+        let socialData = localStorage.getItem('nimoSocial');
+        let social = socialData ? JSON.parse(socialData) : {custom: []};
+        social.custom.splice(index, 1);
+        localStorage.setItem('nimoSocial', JSON.stringify(social));
+        loadCustomSocialLinks();
+    }
+}
+
+function saveSocialLinks() {
+    let social = {
+        ig: document.getElementById('igLink').value,
+        tt: document.getElementById('ttLink').value,
+        wa: document.getElementById('waLink').value,
+        fb: document.getElementById('fbLink').value,
+        tg: document.getElementById('tgLink').value
+    };
+    
+    let socialData = localStorage.getItem('nimoSocial');
+    let customData = socialData ? JSON.parse(socialData) : {};
+    
+    if(customData.custom) {
+        social.custom = customData.custom;
+    }
+    
+    localStorage.setItem('nimoSocial', JSON.stringify(social));
+    alert('Social media links disimpan!');
+}
+
+// Store orders when checkout
+function storeOrder(name, phone, address, items, totalAmount) {
+    let ordersData = localStorage.getItem('nimoOrders') || '[]';
+    let orders = JSON.parse(ordersData);
+    
+    let newOrder = {
+        name: name,
+        phone: phone,
+        address: address,
+        items: items.map(i => i.name).join(', '),
+        total: totalAmount,
+        date: new Date().toLocaleString()
+    };
+    
+    orders.push(newOrder);
+    localStorage.setItem('nimoOrders', JSON.stringify(orders));
+}
+
+function toggleCart() {
+    document.getElementById("cartBox").classList.toggle("show");
+}
+
+function switchTab(tabName) {
+
+    // Hide all sections
+    document.getElementById("home-section").style.display = "none";
+    document.getElementById("promotions-section").style.display = "none";
+    document.getElementById("menu-section").style.display = "none";
+    document.getElementById("menu-products").style.display = "none";
+    document.getElementById("admin-section").style.display = "none";
+
+    // Remove active class from all tabs
+    document.querySelectorAll(".tab").forEach(tab => {
+        tab.classList.remove("active");
+    });
+
+    // Show selected section and mark tab as active
+    if(tabName === "home") {
+        document.getElementById("home-section").style.display = "block";
+        document.querySelectorAll(".tab")[0].classList.add("active");
+    } else if(tabName === "promotions") {
+        document.getElementById("promotions-section").style.display = "block";
+        document.querySelectorAll(".tab")[1].classList.add("active");
+    } else if(tabName === "menu") {
+        document.getElementById("menu-section").style.display = "block";
+        document.getElementById("menu-products").style.display = "flex";
+        document.querySelectorAll(".tab")[2].classList.add("active");
+    } else if(tabName === "admin") {
+        document.getElementById("admin-section").style.display = "block";
+        document.querySelectorAll(".tab")[3].classList.add("active");
+        loadAdminData();
+    }
+}
+
+function selectOrderType(type) {
+    orderType = type;
+    let typeText = {
+        'delivery': 'Delivery',
+        'dinein': 'Dine In',
+        'selfcollect': 'Self Collect'
+    };
+    alert("Pilihan Anda: " + typeText[type]);
+}
+
+function tabAdminLogin() {
+    let password = document.getElementById('tabAdminPassword').value;
+    if(password === adminPassword) {
+        document.querySelector('.admin-login-prompt').style.display = 'none';
+        document.getElementById('tabAdminPanel').style.display = 'block';
+        loadAdminData();
+    } else {
+        alert('Password Salah!');
+    }
+    document.getElementById('tabAdminPassword').value = '';
+}
+
+function tabLogoutAdmin() {
+    document.querySelector('.admin-login-prompt').style.display = 'block';
+    document.getElementById('tabAdminPanel').style.display = 'none';
+    switchTab('home');
+}
+
+function changeQty(item, delta){
+    let input = document.getElementById('qty-' + item);
+    let val = parseInt(input.value) + delta;
+    if(val < 1) val = 1;
+    input.value = val;
+}
+
+function addPopcorn(){
+    let flavour = document.getElementById("flavour").value;
+    let qty = parseInt(document.getElementById("qty-popcorn").value);
+    addToCart("Ayam Pop Corn " + flavour, 8, qty);
+}
+
+function addSambal(){
+    let type = document.getElementById("sambal").value;
+    let qty = parseInt(document.getElementById("qty-sambal").value);
+    addToCart("Sambal Rindu - " + type, 5, qty);
+}
+
+function addMinuman(){
+    let type = document.getElementById("minuman").value;
+    let qty = parseInt(document.getElementById("qty-minuman").value);
+    addToCart("Minuman - " + type, 3, qty);
+}
+
+function addCombo(){
+    let type = document.getElementById("combo").value;
+    let qty = parseInt(document.getElementById("qty-combo").value);
+    addToCart("Combo Meal - " + type, 15, qty);
+}
+
+function addComboToCart(){
+    let comboType = document.getElementById("combo-type").value;
+    let payment = document.getElementById("combo-payment").value;
+    
+    if(comboType === "--- Pilih Combo ---"){
+        alert("Sila pilih combo");
+        return;
+    }
+    if(payment === "--- Pilih Kaedah Bayaran ---"){
+        alert("Sila pilih kaedah pembayaran");
+        return;
+    }
+    
+    let price = comboType === "A" ? 10 : 14;
+    let comboName = "Combo " + comboType + " Nimo Spicy (Bayaran: " + payment + ")";
+    addToCart(comboName, price, 1);
+}
+
+function addToCart(name, price, qty){
+    for(let i=0;i<qty;i++){
+        cart.push({name, price});
+        total += price;
+    }
+    updateCart();
+}
+
+function updateCart(){
+    document.getElementById("cart-count").innerText = cart.length;
+    document.getElementById("total").innerText = total.toFixed(2);
+
+    let list = document.getElementById("cart-items");
+    list.innerHTML = "";
+
+    cart.forEach((item, i)=>{
+        let li = document.createElement("li");
+        li.innerHTML = `${item.name} RM${item.price.toFixed(2)} 
+            <button onclick="removeItem(${i})">×</button>`;
+        list.appendChild(li);
+    });
+}
+
+function removeItem(index){
+    total -= cart[index].price;
+    cart.splice(index,1);
+    updateCart();
+}
+
+function checkout(){
+    let name = document.getElementById("custName").value;
+    let phone = document.getElementById("custPhone").value;
+    let addr = document.getElementById("custAddress").value;
+    let payment = document.getElementById("paymentMethod").value;
+
+    if(!name || !phone || !addr || !payment){
+        alert("Sila isi semua maklumat.");
+        return;
+    }
+
+    let orderTypeText = {
+        'delivery': 'Delivery',
+        'dinein': 'Dine In',
+        'selfcollect': 'Self Collect'
+    };
+
+    // Store order in localStorage
+    storeOrder(name, phone, addr, cart, total);
+
+    let msg = "🔥 ORDER NIMO SPICY EMPIRE 🔥%0A%0A";
+    msg += "📋 Jenis Pesanan: "+orderTypeText[orderType]+"%0A%0A";
+    msg += "👤 Nama: "+name+"%0A";
+    msg += "📞 Telefon: "+phone+"%0A";
+    msg += "📍 Alamat: "+addr+"%0A";
+    msg += "💳 Bayar: "+payment+"%0A%0A";
+
+    msg += "🛒 PESANAN:%0A";
+    cart.forEach(item=>{
+        msg += "• "+item.name+" RM"+item.price.toFixed(2)+"%0A";
+    });
+
+    msg += "%0A💰 Total: RM"+total.toFixed(2);
+
+    window.location.href = "https://wa.me/60187793576?text=" + msg;
+}
+
+// Image Modal Functions
+function openImageModal(src) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.style.display = 'block';
+    modalImg.src = src;
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById('imageModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Slideshow Functions
+let currentSlide = 0;
+let slideshowTimer;
+
+function initSlideshow() {
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('dotsContainer');
+    
+    // Create dots
+    for (let i = 0; i < slides.length; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'dot';
+        if (i === 0) dot.classList.add('active');
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+    }
+    
+    // Start auto-play
+    autoPlaySlideshow();
+}
+
+function changeSlide(n) {
+    clearTimeout(slideshowTimer);
+    const slides = document.querySelectorAll('.slide');
+    currentSlide += n;
+    
+    if (currentSlide >= slides.length) {
+        currentSlide = 0;
+    } else if (currentSlide < 0) {
+        currentSlide = slides.length - 1;
+    }
+    
+    showSlide(currentSlide);
+    autoPlaySlideshow();
+}
+
+function goToSlide(n) {
+    clearTimeout(slideshowTimer);
+    currentSlide = n;
+    showSlide(currentSlide);
+    autoPlaySlideshow();
+}
+
+function showSlide(n) {
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    
+    if (n >= slides.length) currentSlide = 0;
+    if (n < 0) currentSlide = slides.length - 1;
+    
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+}
+
+function autoPlaySlideshow() {
+    slideshowTimer = setTimeout(() => {
+        currentSlide++;
+        const slides = document.querySelectorAll('.slide');
+        if (currentSlide >= slides.length) {
+            currentSlide = 0;
+        }
+        showSlide(currentSlide);
+        autoPlaySlideshow();
+    }, 2000); // Change slide every 2 seconds
+}
+
+// Initialize slideshow when page loads
+window.addEventListener('load', initSlideshow);
+</script>
+
+<!-- Image Modal -->
+<div id="imageModal" class="image-modal">
+    <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
+    <img class="image-modal-content" id="modalImage" src="">
+</div>
+
+</body>
+</html>
