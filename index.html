@@ -18,6 +18,8 @@
             min-height: 100vh;
             padding: 0;
             margin: 0;
+            padding-bottom: 160px; /* increased safe space so fixed admin button doesn't overlap footer */
+            overflow-x: hidden; /* avoid unwanted horizontal scroll on small screens */
         }
 
         nav {
@@ -41,12 +43,13 @@
                 0 0 20px rgba(255, 107, 53, 0.6),
                 0 0 30px rgba(255, 107, 53, 0.4),
                 2px 2px 4px rgba(0, 0, 0, 0.5);
-            width: 100vw;
+            width: 100%;
             left: 0;
             right: 0;
             margin: 0;
-            margin-left: -50vw;
-            margin-right: -50vw;
+            padding-left: 20px;
+            padding-right: 20px;
+            box-sizing: border-box;
         }
 
         /* Menu Tabs */
@@ -559,7 +562,7 @@
             display: flex;
             justify-content: center;
             gap: 30px;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
             margin: 40px 20px;
             padding: 0 20px;
         }
@@ -572,6 +575,10 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+            flex: 1 1 280px; /* allow cards to shrink/grow responsively */
+            max-width: 420px;
+            min-width: 220px;
         }
 
         .card:hover {
@@ -887,8 +894,8 @@
 
         #menu-products {
             display: flex !important;
-            flex-wrap: nowrap;
-            gap: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
             justify-content: center;
             width: 100%;
         }
@@ -1080,6 +1087,77 @@
             font-weight: bold;
             font-size: 28px;
             margin-bottom: 15px;
+        }
+
+        /* Responsive tweaks for tablet and phone */
+        @media (max-width: 1024px) {
+            nav {
+                font-size: 24px;
+                padding: 10px 0;
+                letter-spacing: 1px;
+            }
+
+            .menu-tabs {
+                gap: 12px;
+                padding: 10px;
+                top: 72px;
+                flex-wrap: wrap;
+            }
+
+            .tab { font-size: 14px; padding: 8px 10px; }
+
+            .cart-icon { right: 12px; top: 12px; padding: 8px 10px; font-size: 18px; }
+
+            .logo-box { width: 120px; height: 120px; }
+            .hero h1 { font-size: 36px; }
+
+            .options-container { gap: 16px; }
+            .option-card { width: 160px; padding: 20px; }
+
+            .promo-card { width: 100%; max-width: 500px; }
+
+            .products { flex-wrap: wrap; }
+            #menu-products { flex-wrap: wrap; }
+
+            .card { width: calc(50% - 20px); }
+
+            .slideshow-container { max-width: 95%; }
+            .slideshow-wrapper { padding-bottom: 75%; }
+        }
+
+        @media (max-width: 900px) {
+            /* Force single-column layout on narrow devices (phones + small tablets) */
+            .card { flex-basis: 100% !important; width: 100% !important; max-width: none !important; min-width: auto !important; }
+            .products { gap: 12px; padding: 0 12px; }
+            #menu-products { gap: 12px; }
+            .promo-card { width: 100%; }
+            .slideshow-container { max-width: 95%; }
+            .admin-toggle { right: 14px; bottom: 120px; }
+        }
+
+        @media (max-width: 720px) {
+            .card { flex-basis: 100%; width: 100%; max-width: 720px; }
+            .products { gap: 12px; padding: 0 12px; }
+            #menu-products { gap: 12px; }
+        }
+
+        @media (max-width: 480px) {
+            nav { font-size: 20px; padding: 8px 0; }
+            .tab { font-size: 13px; padding: 6px 8px; }
+            .logo-box { width: 90px; height: 90px; }
+            .hero h1 { font-size: 28px; }
+
+            .option-card { width: 100%; }
+            .card { width: 100%; }
+
+            .cart-box { padding: 20px; width: 95%; margin: 20px auto; }
+            .promo-card img, .card img { height: auto; max-height: 220px; }
+
+            .menu-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .menu-tabs::-webkit-scrollbar { display: none; }
+
+            /* move admin toggle up so it doesn't overlap footer on small screens */
+            .admin-toggle { bottom: 110px; }
         }
     </style>
 </head>
